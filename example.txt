@@ -1,0 +1,21 @@
+sealed class ThreeNode
+{
+    public IEnumerable<ThreeNode> Children{ get; init;}
+}
+
+
+
+public static IEnumerable<ThreeNode> GetAllNodes(ThreeNode node)
+{
+    foreach (TreeNode childrenNode in node.Children)
+    {
+        yield return childrenNode;
+        foreach (TreeNode node in GetAllNodes(childNode))
+        {
+            yield return node;
+        }
+    }
+
+}
+TreeNode node = new TreeNode();
+GetAllNodes(node);
